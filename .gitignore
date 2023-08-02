@@ -1,0 +1,13 @@
+# Lista de archivos y carpetas a ser ignoradas por git
+
+#archivos ignorados del so ios
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ignorando archivos de video 
+*.mov
+*.avi
+
+# Directorio de dependencias
+node_modules/
