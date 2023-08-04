@@ -22,28 +22,65 @@
                 <img onclick="clickPatricio()" class="img-fluid rounded" src="./assets/img/OF5TWAKHBJB6BIRDR5N2MTZKTI.avif" alt="Patricio estrella construyendo">
 
                 </div>
+
                 <div class="col-10 col-md-6 col-lg-4">
-                <h2>Página en contrucción</h2>
-                <p>Estamos trabajando en la página, pronto estará lista</p>
+                    <h2>Página en contrucción</h2>
+                    <p>Estamos trabajando en la página, pronto estará lista</p>
+                    <div class="row mt-5">
+                        <div class="col-12  col-md-12 box-col"><h2 id="gretting">!QUE TRANZA¡ <br> ¿Cúal es tu nombre de <strong>CHOLO</strong>?</h2></div>
+                        <button onclick="changeName()" type="button" class="btn btn-lg btn-warning">agrega tu nombre CHOLO</button>
+
+                        
+                </div>
+
             </div>
         </div>
         
     </main>
-    <footer class="container-fluid text-center">
-        <div class="row align-items-center justify-content-center" style="height: 20vh;">
-            <div class="col-4">
+
+    <footer class="container-fluid text-center my-3" style="height: 20vh;">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-6 col-md-3">
+                <h3 id="green-color" onclick="changeColor(this, 'green')">Cambia mi color a verde</h3>
+            </div>
+            <div class="col-6 col-md-3">
+                <h3 id="red-color" onclick="changeColor(this, 'red')">Cambia mi color a rojo</h3>
+            </div>
+            <div class="col-6 col-md-3">
+                <h3 id="purple-color" onclick="changeColor(this, 'purple')">Cambia mi color a morado</h3>
+            </div>
+            <div class="col-6 col-md-3">
+                <h3 id="user-color" onclick="changeColorWithPrompt(this)">Cambia mi color al que tú desees</h3>
+            </div>
+        </div>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-5">
+                <button onclick="resetColor()" type="button" class="btn btn-dark">Reiniciar colores</button>
+                </div>
+            </div>
+        </footer>
+
+    <!-- <footer class="container-fluid text-center" style="height: 20vh;">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-3">
                 <h3 onclick="changeColor(this, 'green')">Cambia mi color a verde</h3>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <h3 onclick="changeColor(this, 'red')">Cambia mi color a rojo</h3>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <h3 onclick="changeColor(this, 'blue')">Cambia mi color a azul</h3>
             </div>
+
+            <div class="col-3 col-md-3">
+                <h3 onclick="changeColorWithPromt(this)">Cambia mi color al que tú desees</h3>
+            </div>
+
+            <butto onclick="changeColor(this, 'blue')" type="button" class="btn btn-primary">Ya te la sábanas</button>
             
 
         </div>
-    </footer>
+    </footer> -->
     <!-- <script>
         console.log("Me encuentro en el body");
         const date2 = new Date();
