@@ -54,7 +54,7 @@ let myVar;
 console.log( `Tipo de dato undefined: ${myVar}` )
 
 // tipo de dato null
-// Una variable que intensionalmente se vorra el tipo de dato
+// Una variable que intensionalmente se borra el tipo de dato
 let myVarNull; // unedefined
 console.log(`Tipo de datos myVarNull: ${ typeof myVarNull }`); // undefined
 myVarNull =  "No me gusta YLE";
@@ -77,3 +77,87 @@ const myObj = {
     [myKey] : 567,
 }
 console.log( myObj );
+
+
+// ------------------Objetos en JavaSCript
+// tipo de dato Array (arrego)
+const cancionesCh30 = ["Highway Star", "trouble", "Saaoko", "Rock Dj"];
+
+// tipos de datos Object
+const misDatosDePerfil = {
+    name: "Benjamín",
+    lastname: "Ortega",
+    age: 27,
+    isBelicoso: false,
+    fullName : function(){
+        return `Nombre completo de Benja: ${this.name} ${this.lastname}`;
+        //return `Npmbre completo de Benja: " + this.name + " " + this.lastname;
+    },
+    // Agregar una función que imrprima una función en mayúsculas
+    fullNameToUpperCase : function(){
+        // return `Nombre completo de Benja: ${this.name.toUpperCase} ${this.lastname.toUpperCase}`;
+        return this.fullName().toUpperCase();
+    }
+
+}
+console.log( misDatosDePerfil );
+console.table( misDatosDePerfil );
+console.log( misDatosDePerfil.fullName );
+console.log( misDatosDePerfil.fullName() );
+console.log( misDatosDePerfil.fullNameToUpperCase() );
+
+// ------------------------------
+// Conversión explicita de datos (soerción de tipo)
+// Conversión a String
+const horaDescanso = 13.05;
+console.log("Hora Descanso " + horaDescanso + " h." ); // concatenación
+const horaDescansoTxt = String( horaDescanso );
+console.log("Hora Descanso " + horaDescansoTxt + " h." ); // concatenación
+console.log("Hora de retorno: " + horaDescanso + .15 ); // 13.050.15
+
+const colorVerde = 0x008000; // Representación decimal: 32768
+console.log(`El valor RGB del color verde es: ${colorVerde}`); // 32768
+console.log(`El valor RGB del color verde es: ${ colorVerde.toString() }`); // 32768
+console.log(`El valor RGB del color verde es: ${ colorVerde.toString(16) }`); // 8000
+console.log(`El valor RGB del color verde es: #${ colorVerde.toString(16).padStart(6, "0") }`); // #008000
+
+// Conversión a Number
+const myAgeTxt = "25";
+const sumatoria = 10 + myAgeTxt; // 1025
+console.log( `Valor de la sumatoria ${sumatoria}` ); // 1025
+
+console.log( `Valor de la sumatoria usando Number(): ${ 10 + Number(myAgeTxt) }` ); //35 
+console.log( `Valor de la sumatoria usando Number(): ${ 10 + parseInt( myAgeTxt ) }` ); //35 
+console.log( `Valor de la sumatoria usando Number(): ${ 10 + parseFloat( myAgeTxt ) }` ); //35
+console.log( `Valor de la sumatoria usando Number(): ${ 10 +  (+myAgeTxt) }` ); //35
+
+// Diferencias entre usar Number() y parseInt()
+// - Number convierte enteros y decimales 
+// - parseInt convierte solo-la parte entera
+console.log( parseInt(100.576) ); // 100
+// - Number devuelbe NaN si la cadena conriene algún caracter no numérico 
+// - parseInt convierte los enteros hasta encontrar un caracter no numérico
+//       si la entrada no comienza con un valor numérico, dvelve NAN
+console.log( Number("123 - 456" ) ); // NaN
+console.log( parseInt("123 - 456" ) ); // 123
+console.log( parseInt("$123 - 456" ) ); // NaN
+console.log( "parseInt( '$123 - 456'.slice(1) ) :" +  parseInt( "$123 - 456".slice(1) ) ); // 123
+console.log( Number( true ) ); // 1
+console.log( parseInt( true ) ); // NaN
+
+// Conversión a Booleano 
+// En la conversasión de boolean los siguientes valores son false:
+// "", 0, null, indefined
+console.log( "Boolean(1): " + Boolean(1) ); // true
+console.log( "Boolean(1000): " + Boolean(1000) ); // true
+console.log( "Boolean(`Hola`): " + Boolean("hola") ); // true
+console.log( "Boolean('false'): " + Boolean("False") ); // true
+console.log( "Boolean(' '): " + Boolean(" ") ); // true
+console.log( "Boolean(' '): " + Boolean("") ); // false
+
+// Number
+// [] -> 0 , [30] -> 30, [30,33] -> NaN, false -> 0, true -> 1
+// String
+// [] -> "" , [12,2] -> "12,2", function(){} -> "funtion(){}", {} -> [object, object]
+
+console.log ( String( JSON.stringify( {name:"Benjamín"}) ));
