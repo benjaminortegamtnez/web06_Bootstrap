@@ -77,7 +77,20 @@ sintaxis:
 
 
 /*
+------------- Funciones flecha -------------
+             (arrow functions)
+Funciones similares a las funciones expresadas pero:
+ - No requiere la palabra reservada function
+ - Si tiene una solo instrucción no requiere las llaves {}
+ - Si la instrucción es el mismo retorno, no requiere la palbra return
 
+sintaxis:
+    const nombreVariable = (parametros) => instrucción;
+
+    const nombreVariable = (parametros) => {
+        instrucción;
+        return expresión;
+    }
 
 */
 
@@ -85,10 +98,59 @@ sintaxis:
 const areaRectangulo = function (base, altura){
     return base * altura;
 
-    Funcion flecha:
+Funcion flecha:
     const areaRectangulo = (base, altura) => base * altura;
-    
+
 } */
 const areaRectangulo = (base, altura) => base * altura;
 
 console.log(`El área es: ${ areaRectangulo(3, 9)} m2.` );
+
+
+/*
+---------------- Parámetros por defecto -----------------
+                 (default parameters)
+Inicializa un parámetro de la funcion, si no se envía el argumento cuando se invoca
+
+*/
+
+// Funcion fecha que realice el area de un triangulo 
+
+/**
+ * Calcula el área de un triangulo
+ * @param {number} base del triángulo
+ * @param {number} altura del triángulo
+ * @returns {number} base * altura / 2
+ *  */
+const areaTriangulo = (base = 1 , altura = 1) => base * altura / 2;
+console.log(`El área del triangulo es: ${ areaTriangulo(3, 9)} m2.` ); // 13.5 m2.
+console.log(`El área del triangulo es: ${ areaTriangulo()} m2.` ); // 0.5 m2.
+console.log(`El área del triangulo es: ${ areaTriangulo(10)} m2.` ); // 5 m2.
+console.log( (1000).toString() ); // conversion base 10 -> 1000
+console.log( (1000).toString(2) ); // conversion base 10 -> 1111101000
+console.log( (1000).toString(16) ); // conversion base 10 -> 3e8
+
+/*
+--------------- Parámetros rest ---------------
+               (rest parameters)
+Permite representar una serie de vlores indefinidos en los argumentos 
+Esta serie de valores se presentan como un array.
+Rest parameters debe estar al final de la lista de parámetros.
+
+sintaxis:
+    .....nombreParametros
+
+*/
+
+const sumatoriaMultiplesNumeros = (a = 0, b = 0, ...rest) => {
+    let suma = a + b;
+    for ( let i = 0; i < rest.length; i++ ) {
+        //suma = suma + rest[i];
+        suma += rest[i];
+    } 
+    return suma;
+}
+console.log(`Sumatoria de múltiples números: ${ sumatoriaMultiplesNumeros(2,5)}`); // 7
+console.log(`Múltiples números: ${ sumatoriaMultiplesNumeros(2, 5, 10, 9 )}`); // 26
+console.log(`Múltiples números: ${ sumatoriaMultiplesNumeros(2, 5, 10, 9, 20, 10 )}`); // 56
+console.log(`Múltiples números: ${ sumatoriaMultiplesNumeros(2)}`); // 2 
