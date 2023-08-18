@@ -154,3 +154,197 @@ console.log(`Sumatoria de múltiples números: ${ sumatoriaMultiplesNumeros(2,5)
 console.log(`Múltiples números: ${ sumatoriaMultiplesNumeros(2, 5, 10, 9 )}`); // 26
 console.log(`Múltiples números: ${ sumatoriaMultiplesNumeros(2, 5, 10, 9, 20, 10 )}`); // 56
 console.log(`Múltiples números: ${ sumatoriaMultiplesNumeros(2)}`); // 2 
+
+
+/*
+----------------- Funciones de Callback ----------------7
+Es una función (definida, expresada, arrow, anónima) que se pasa a otra función como argumento.
+Se para en el argumento como referencia ( sin parentesis ).
+*/
+
+function saludoALosPokemones() { 
+    return "yo te elijo";
+}
+
+function saludoSquirtle( nombre ) {
+    return "Vamo' a calmarno " + nombre;
+}
+
+function eligiendoPokebola( saludo, nombre ){ 
+    console.log( "==================" );
+    console.log( "Hola, estás en la liga pokemon" );
+    console.log( "Elige a tu mejor pokemon" );
+    console.log( saludo( nombre) );
+}
+
+// eligiendoPokebola( saludoALosPokemones() ); // saludo is not a function 
+eligiendoPokebola ( saludoALosPokemones ); // "yo te elijo"
+eligiendoPokebola ( saludoSquirtle, "Benjamín Ortega" );
+eligiendoPokebola ( function(){return "Pika Pika chuu"} );
+eligiendoPokebola ( function(nombre){return "quiiiiii soy " + nombre}, "Cubone" );
+eligiendoPokebola ( (nombre)=> `quiiiiii soy ${nombre}`, "Cubone");
+
+/*
+  Ejercicio 4
+  Crear un programa que itere sobre dos arreglos;
+  si hay cursos en común, imprimirlos en la consola.
+
+ student1Courses = ["Math", "English", "Programming", "Biology", "Physics", "Music"];
+student2Courses = ["Geography", "Spanish", "Programming", "Music"];
+
+  salida: "Cursos en común: Programming, Music"
+*/
+const student1Courses = ["Math", "English", "Programming", "Biology", "Physics", "Music"];
+const student2Courses = ["Geography", "Spanish", "Programming", "Music"];
+
+
+function cursosEnComun( student1Courses,  student2Courses  ){
+    const commonCourses = []; // guardar los cursos en comun
+
+    for (let i = 0; i < student1Courses.length; i++) { // ["Math", "English", "Programming", "Biology", "Physics", "Music"];
+        for (let j = 0; j < student2Courses.length; j++) { // ["Geography", "Spanish", "Programming", "Music"]
+            console.log(` ${student1Courses[i]} === ${student2Courses[j]} : ${student1Courses[i] === student2Courses[j]}`)
+            if ( student1Courses[i] === student2Courses[j] ){
+                commonCourses.push(student1Courses[i]);
+            }    
+        }        
+    }
+
+    return `Cursos en común ${commonCourses}`
+}
+console.log ( cursosEnComun( student1Courses, student2Courses ) );
+
+
+//--------------- Resolviendo con filter e include ----------------------
+
+function getCommonCoursesWithFilter( array1Courses, array2Courses ){
+    return  array1Courses.filter( course=> array2Courses.includes(course) );
+}
+
+console.log(`Común: ${getCommonCoursesWithFilter( student1Courses, student2Courses )}`);
+
+//--------------- Resolviendo con filter e include por partes ----------------------
+console.log("###################################");
+function includeCourse( course, index, array ){
+    console.log(`Elemento ${course}, indice ${index}, include ${student2Courses.includes(course)}`);
+    return student2Courses.includes(course); // evaluación // ["Geography", "Spanish", "Programming", "Music"]
+}
+
+function getCoursesWithFilter( array1Courses){
+      const commonCourses = array1Courses.filter( includeCourse ); // ["Math", "English", "Programming", "Biology", "Physics", "Music"];
+      return commonCourses;
+}
+console.log(`Comúnxpartes: ${getCoursesWithFilter( student1Courses, student2Courses )}`);
+
+// -------------- Contar la cantidad de caracteres de una frase ---------------------
+/*
+   "peso pluma pica papas con un pico y una pala con un pico pica papas peso pluma";
+
+   Mostrar la cantidad de letras 'p'.
+   Usar funciones flecha.
+
+   recomendaciones de métodos, split y filter
+
+*/
+
+const phasePP = "Peso Pluma pica papas con un pico y una pala con un pico pica papas Peso Pluma";
+const counterCharacter = ( phase, character ) => phase.split(character).length-1;
+
+const counterCharacterUnsensitive = ( phase, character ) => phase.toLowerCase().split(character).length-1;
+const contarLetrasP = (frase) => {
+    const letrasP = frase.split('').filter(letra => letra === 'p' || letra === 'P');
+    return letrasP.length;
+  };
+console.log(`Cantidad de letras 'p' : ${ counterCharacter(phasePP, "p") } `); // 13
+console.log(`Cantidad de letras 'p' : ${ counterCharacter(phasePP, "p") + counterCharacter(phasePP, "P") } `); // 13
+console.log(`Cantidad de letras 'p' : ${ counterCharacterUnsensitive(phasePP, "p") } `); // 13
+console.log(`Cantidad de letras(mau) 'p' : ${ contarLetrasP(phasePP) } `); // 13
+
+
+
+// ----------------------- Recursividad ---------------------------
+/*
+Una función reursiva es una función que se llama así misma durante su ejecución.
+
+Se utilizan en algoritmos y soluciones que se basasn en la división y conquista como
+cálculos matemáticos, recorrido de estructura de datos y algoritmos de busqueda y ordenamiento.
+
+Patrón 
+    function nombreFuncionRecursiva( parametro ){
+        if( condicionParo ){
+          return expresión;
+        }
+        else {
+            // llamada recursiva
+            nombreFunction( nuevoParametro)
+        }
+    }
+*/
+
+// ------------- Calculo del factorial de un número usando ciclo for -------------
+
+function factorialConCicloFor( numero ) {
+    let factorial = 1;
+    for (let i = numero; i > 0; i--) {
+        factorial = factorial * i;
+       
+    }
+    return factorial
+}
+console.log(`El factorial de 5 es: ${factorialConCicloFor(5)}` ); // 1*2*3*4*5 = 120
+
+
+//......... Cálculo del factorial de un número usando recursividad ...............
+
+function factorialConRecursividad( numero ){
+    if ( numero === 1 ) {
+        return 1;
+    } else {
+        console.log(`${numero} * ${numero-1}`);
+        return numero * factorialConRecursividad( numero -1 );
+    }
+}
+
+console.log(`El factorial recursivo de 5 es: ${factorialConRecursividad(5)}`);
+
+
+// -------------- Saludar con recursividad ---------------------
+/*
+ Generar una función recursiva que muestre en consola un saludo
+ donde se indique el número saludo desado
+
+ ej: saludar 10 veces
+
+  Saludo 1
+  Saludo 2
+  Saludo 3
+   ....
+  Saludo 9
+  Saludo 10
+
+*/
+
+/* function saludo( numeroSaludo ) {
+    if (numeroSaludo === 10) {
+        return;
+    } else {
+        console.log(`numeroSaludo ${numeroSaludo+1}` );
+        return saludo( numeroSaludo - 1)
+        
+    }
+}
+console.log(saludo(10) );
+// saludo(10); */
+
+
+function saludoz( numeroSaludo){
+    if( numeroSaludo === 1){
+        return `Saludo ${numeroSaludo}`;
+    }
+    else {
+        // llamada recursiva
+        console.log(`Saludo ${numeroSaludo}`)
+        return saludoz( numeroSaludo - 1 );
+    }
+}
+console.log(saludoz(10));
